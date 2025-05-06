@@ -5,27 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tiktakcu - 2 Pemain</title>
   <style>
+  /*notifikasi*/
+  #notification {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.3); /* putih transparan */
+  backdrop-filter: blur(6px); /* efek blur kaca */
+  -webkit-backdrop-filter: blur(6px); /* dukungan safari */
+  color: #333;
+  padding: 10px 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1200;
+  width: calc(100% - 50px); /* sesuaikan dengan lebar navbar */
+  transition: opacity 0.5s ease;
+}
+  
     /* Reset dan Base */
     * {
       box-sizing: border-box;
     }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #f8b500, #fceabb);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 70px 15px 20px 15px;
-      transition: background 0.5s ease;
-      overflow-x: hidden;
-      user-select: none;
-    }
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, ##34e4ef, ##2963e8); /* Ganti dengan warna baru */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 70px 15px 20px 15px;
+  transition: background 0.5s ease;
+  overflow-x: hidden;
+  user-select: none;
+}
     h1 {
       margin-bottom: 15px;
-      color: #222;
+      color: white;
     }
     /* Hamburger Menu */
     #menu-toggle {
@@ -118,7 +136,10 @@
       gap: 12px;
       width: 100%;
       max-width: 320px;
-      margin-top: 10px;
+      margin-top: 30px; /* diturunkan jadi 30px */
+      margin-bottom: 30px; /* tambahan jarak bawah */
+      position: relative;
+      top: 40px; /* posisikan papan ke bawah */
     }
     .cell {
       background-color: rgba(255, 255, 255, 0.4);
@@ -156,7 +177,7 @@
       margin: 15px 0 10px 0;
       font-size: 1.25rem;
       font-weight: 700;
-      color: #222;
+      color: white;
       min-height: 28px;
       user-select: none;
     }
@@ -174,6 +195,9 @@
       user-select: none;
       max-width: 320px;
       width: 100%;
+      position: relative;
+      top: 60px; /* posisikan tombol ke bawah dari default */
+      height: 90px;
     }
     button#reset-btn:hover {
       background-color: #f8b500;
@@ -187,18 +211,36 @@
         max-width: 100vw;
         grid-template-columns: repeat(3, minmax(60px, 1fr));
         grid-auto-rows: 60px;
+        margin-top: 30px;
+        margin-bottom: 35px;
+        top: 30px;
       }
       .cell {
         font-size: 2.2rem;
       }
       button#reset-btn {
         max-width: 100vw;
+        top: 50px;
       }
     }
+    #watermark {
+    position: fixed;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    font-weight: 300;
+    user-select: none;
+    pointer-events: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    z-index: 1000;
+  }
   </style>
 </head>
 <body>
-
+<!-- notifikasi -->
+<div id="notification">sekarang kalian kalian bisa ubah latar belakang di navbar!</div>
   <h1>Tiktakcu - 2 Pemain</h1>
 
   <!-- Hamburger Icon -->
@@ -219,8 +261,8 @@
         <option value="background1.jpg">cat</option>
         <option value="background2.jpg">comic store</option>
         <option value="background3.jpg">gamer room</option>
-        <option value="background4.jpg">school bus</option>
-        <option value="background5.jpg">belum tersedia</option>
+        <option value="background4.jpg">sakura</option>
+        <option value="background5.jpg">(bisa request)</option>
       </select>
       <small id="background-desc">masih tahap perkembangan</small>
     </div>
@@ -249,6 +291,19 @@
   <button id="reset-btn" aria-label="Reset game">Ulangi Permainan</button>
 
   <script>
+    // Menampilkan notifikasi saat halaman dimuat
+window.onload = function() {
+  const notification = document.getElementById('notification');
+  notification.style.display = 'block'; // Tampilkan notifikasi
+  setTimeout(() => {
+    notification.style.opacity = '0'; // Memudarkan notifikasi
+    setTimeout(() => {
+      notification.style.display = 'none'; // Sembunyikan notifikasi setelah memudar
+    }, 500); // Waktu untuk memudar
+  }, 3000); // Tampilkan selama 3 detik
+};
+
+    
     (function(){
       const body = document.body;
       const board = document.getElementById('board');
@@ -286,10 +341,10 @@
 
       // Background options
       function setBackground(value){
-        switch(value){
-          case 'default':
-            body.style.backgroundImage = 'linear-gradient(to right, #f8b500, #fceabb)';
-            break;
+  switch(value){
+    case 'default':
+      body.style.backgroundImage = 'linear-gradient(to right, #00c6ff, #0072ff)'; // Ganti dengan warna baru (pemicu)
+      break;
           case 'background1.jpg':
           case 'background2.jpg':
           case 'background3.jpg':
@@ -434,7 +489,7 @@
 
     })();
   </script>
-
+  <div id="watermark">desing by zahwan</div>
 </body>
 </html>
 
