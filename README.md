@@ -65,7 +65,7 @@ _Bersama kita buat Tiktakcu makin seru dan personal!_
 
 ## 🔗 Demo Langsung
 
-Buka <br> https://empy-ai09.github.io/tic-tac-toe.github.io/ <br>
+Buka <br> https://tic-tac-toexox.netlify.app/ <br>
 di browser kamu dan mainkan langsung!
 
 ---
